@@ -5,7 +5,7 @@
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
       "request": "launch",
-      "args": ["1", "2", "3", "4"],
+      "args": ["oi.txt", "cat -e", "cat -e", "4"],
       "stopAtEntry": false,
       "externalConsole": false,
       "cwd": "/nfs/homes/rgomes-d/git_Noreth/pipex",
