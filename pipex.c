@@ -6,7 +6,7 @@
 /*   By: rgomes-d <rgomes-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 14:50:14 by rgomes-d          #+#    #+#             */
-/*   Updated: 2025/10/08 23:20:42 by rgomes-d         ###   ########.fr       */
+/*   Updated: 2025/10/08 23:40:50 by rgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,7 +241,7 @@ int	close_fds(t_fork info, int mode)
 	if (mode == ALL)
 		if (info.fd[INFILE] != -1)
 			close(info.fd[INFILE]);
-	if (mode == PARENT || mode == ALL)
+	if (mode == PARENT)
 	{
 		close(info.pipefd[1]);
 		if (info.old_stdout != -1)
@@ -252,6 +252,7 @@ int	close_fds(t_fork info, int mode)
 		close(info.fd[OUTFILE]);
 		close(info.pipefd[0]);
 		close(info.pipefd[1]);
+		close(info.old_stdout);
 	}	
 	if (mode == PARENT && info.index == info.argc)
 	{
