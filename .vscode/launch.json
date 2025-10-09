@@ -5,11 +5,11 @@
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
       "request": "launch",
-      "args": ["oi.txt", "cat -e", "cat -e", "4"],
+      "args": ["noperm", "cat -e", "cat -e", "outfile_tester"],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/nfs/homes/rgomes-d/git_Noreth/pipex",
-      "program": "/nfs/homes/rgomes-d/git_Noreth/pipex/pipex",
+      "cwd": "/home/onaldo/pipex",
+      "program": "/home/onaldo/pipex/pipex",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
@@ -18,22 +18,22 @@
           "text": "-enable-pretty-printing",
           "ignoreFailures": true
         }
-		// ,
-        // {
-        //   "description": "Seguir o processo filho no fork()",
-        //   "text": "set follow-fork-mode child",
-        //   "ignoreFailures": true
-        // },
-        // {
-        //   "description": "Não se desprender no fork (pai e filho ficam ativos)",
-        //   "text": "set detach-on-fork off",
-        //   "ignoreFailures": true
-        // },
-        // {
-        //   "description": "Permitir alternar entre processos sem travar",
-        //   "text": "set scheduler-locking off",
-        //   "ignoreFailures": true
-        // }
+		,
+        {
+          "description": "Seguir o processo filho no fork()",
+          "text": "set follow-fork-mode child",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Não se desprender no fork (pai e filho ficam ativos)",
+          "text": "set detach-on-fork off",
+          "ignoreFailures": true
+        },
+        {
+          "description": "Permitir alternar entre processos sem travar",
+          "text": "set scheduler-locking off",
+          "ignoreFailures": true
+        }
       ]
     }
   ]
