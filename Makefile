@@ -56,12 +56,12 @@ $(LIBFT): $(OBJTS_LIBFT)
 		@echo "	⠀⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠟⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀"
 		@echo "	⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠻⠿⠿⠿⠿⠛⠉\n\n$(NC)"
 		@echo "$(RED)+==========================================+"
-		@echo "      Welcome to push_swap - Build libft       "
+		@echo "      Welcome to $(NAME) - Build libft       "
 		@echo "+==========================================+$(NC)"
 		@echo "Compilando código...\n"
 		@make -C $(SRCS_LIBFT) NAME="libft.a" all
 		@echo "$(BLUE)+==========================================+"
-		@echo "          Build Objts push_swap         	"
+		@echo "          Build Objts $(NAME)         	"
 		@echo "+==========================================+$(NC)"
 
 %.o: %.c
