@@ -6,7 +6,7 @@
 /*   By: rgomes-d <rgomes-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 09:57:31 by rgomes-d          #+#    #+#             */
-/*   Updated: 2025/10/08 21:03:37 by rgomes-d         ###   ########.fr       */
+/*   Updated: 2025/10/09 12:25:09 by rgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 100
