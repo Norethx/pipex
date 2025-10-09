@@ -6,7 +6,7 @@
 /*   By: rgomes-d <rgomes-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 14:50:14 by rgomes-d          #+#    #+#             */
-/*   Updated: 2025/10/09 14:57:01 by rgomes-d         ###   ########.fr       */
+/*   Updated: 2025/10/09 19:51:37 by rgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_fork	info;
 	char	**args;
+	int		i;
 
 	if (argc != 5)
-		return (0);
+		return (1);
 	info.argc_r = argc;
 	info.fd[OUTFILE] = -1;
 	info.is_here_doc = 0;
@@ -27,7 +28,10 @@ int	main(int argc, char **argv, char **envp)
 	open_files(&info, argv, argc, INFILE);
 	args = control_args(argv, argc, &info);
 	info.index = 0;
-	control_gc(WEXITSTATUS(control_fork(info, argv, args, envp)));
+	i = control_fork(info, argv, args, envp);
+	if (i != 0 && i != 1)
+		control_gc(WEXITSTATUS(i));
+	control_gc(i);
 }
 
 char	**control_args(char **argv, int argc, t_fork *info)
@@ -57,12 +61,15 @@ int	open_files(t_fork *info, char **argv, int argc, t_file f_open)
 	if (info->fd[OUTFILE] == -1 && f_open == OUTFILE)
 	{
 		perror("");
-		info->fd[OUTFILE] = 1;
+		return (1);
 	}
 	if (f_open == INFILE)
 		info->fd[INFILE] = open(argv[1], O_RDONLY);
 	if (info->fd[INFILE] == -1 && f_open == INFILE)
+	{
 		perror("");
+		return (1);
+	}
 	return (0);
 }
 
@@ -75,8 +82,9 @@ int	control_fork(t_fork info, char **argv, char **args, char **envp)
 	path = find_path(envp);
 	while (info.index <= info.argc)
 	{
-		if (info.index == info.argc)
-			open_files(&info, argv, info.argc_r, OUTFILE);
+		if (info.index == info.argc && open_files(&info, argv, info.argc_r,
+				OUTFILE))
+			break ;
 		handle_pipes(&info);
 		childs[info.index] = fork();
 		if (childs[info.index] == -1)
@@ -89,6 +97,8 @@ int	control_fork(t_fork info, char **argv, char **args, char **envp)
 	info.index = 0;
 	while (info.index <= info.argc)
 		waitpid(childs[info.index++], &info.status, 0);
+	if (childs[info.argc] == 0)
+		return (EXIT_FAILURE);
 	return (info.status);
 }
 
