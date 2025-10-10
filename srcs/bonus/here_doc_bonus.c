@@ -6,7 +6,7 @@
 /*   By: rgomes-d <rgomes-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 12:18:32 by rgomes-d          #+#    #+#             */
-/*   Updated: 2025/10/09 19:59:47 by rgomes-d         ###   ########.fr       */
+/*   Updated: 2025/10/10 16:49:36 by rgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	create_heredoc(char *eof, t_fork *info)
 				"temp");
 		if (str && !ft_strcmp(str, eof))
 			break ;
-		else
+		else if(str)
 			ft_putstr_fd(str, tmp);
 	}
 	eof = ft_gcfct_register_root(ft_itoa(tmp), GC_DATA, "temp");
