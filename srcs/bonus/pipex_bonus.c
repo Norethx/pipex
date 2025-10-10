@@ -6,7 +6,7 @@
 /*   By: rgomes-d <rgomes-d@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 14:50:14 by rgomes-d          #+#    #+#             */
-/*   Updated: 2025/10/09 19:59:42 by rgomes-d         ###   ########.fr       */
+/*   Updated: 2025/10/10 16:57:35 by rgomes-d         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	main(int argc, char **argv, char **envp)
 		return (0);
 	info.argc_r = argc;
 	info.fd[OUTFILE] = -1;
+	info.fd[INFILE] = -1;
 	if (ft_strcmp("here_doc", argv[1]))
 		info.is_here_doc = 0;
 	else
@@ -70,7 +71,11 @@ int	open_files(t_fork *info, char **argv, int argc, t_file f_open)
 		return (1);
 	}
 	if (info->is_here_doc && f_open == INFILE)
+	{
 		create_heredoc(argv[2], info);
+		ft_gc_del_root("temp");
+		ft_gc_collect();
+	}
 	else if (f_open == INFILE)
 		info->fd[INFILE] = open(argv[1], O_RDONLY);
 	if (info->fd[INFILE] == -1 && f_open == INFILE)
